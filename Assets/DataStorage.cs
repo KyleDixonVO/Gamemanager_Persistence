@@ -15,6 +15,7 @@ public class DataStorage : MonoBehaviour
     public float score;
     public int manaPoints;
     public int staminaPoints;
+    public int level;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class DataStorage : MonoBehaviour
         globalFile.Close();
 
         //set local globalData vars equal to loadedGlobalData
+        
 
     }
 
@@ -49,7 +51,12 @@ public class DataStorage : MonoBehaviour
 
         PlayerData playerData = new PlayerData();
 
-        //set outgoing playerdata equal to local playerdata
+        playerData.experience = experience;
+        playerData.health = health;
+        playerData.manaPoints = manaPoints;
+        playerData.score = score;
+        playerData.staminaPoints = staminaPoints;
+        playerData.level = level;
 
         binaryFormatter.Serialize(playerFile, playerData);
         playerFile.Close();
@@ -65,6 +72,12 @@ public class DataStorage : MonoBehaviour
             playerFile.Close();
 
             //set local playerData vars equal to loadedPlayerData
+            experience = playerData.experience;
+            health = playerData.health;
+            manaPoints = playerData.manaPoints;
+            staminaPoints = playerData.staminaPoints;
+            score = playerData.score;
+            level = playerData.level;
         }
     }
     // Start is called before the first frame update
@@ -78,6 +91,66 @@ public class DataStorage : MonoBehaviour
     {
         
     }
+
+    public void IncreaseHealth()
+    {
+        health++;
+    }
+
+    public void DecreaseHealth()
+    {
+        health--;
+    }
+
+    public void IncreaseEXP()
+    {
+        experience++;
+    }
+
+    public void DecreaseEXP()
+    {
+        experience--;
+    }
+
+    public void IncreaseMana()
+    {
+        manaPoints++;
+    }
+
+    public void DecreaseMana()
+    {
+        manaPoints--;
+    }
+
+    public void IncreaseStamina()
+    {
+        staminaPoints++;
+    }
+
+    public void DecreaseStamina()
+    {
+        staminaPoints--;
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+    }
+
+    public void DecreaseScore()
+    {
+        score--;
+    }
+
+    public void IncreaseLevel()
+    {
+        level++;
+    }
+
+    public void DecreaseLevel()
+    {
+        level--;
+    }
 }
 
 [Serializable]
@@ -88,7 +161,12 @@ public class GlobalData
 
 [Serializable]
 public class PlayerData 
-{ 
-
+{
+    public float experience;
+    public int health;
+    public float score;
+    public int manaPoints;
+    public int staminaPoints;
+    public int level;
 }
 
